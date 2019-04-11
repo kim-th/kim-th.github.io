@@ -1,12 +1,12 @@
 # main links
 main:
   - title: "Archive"
-      url: /year-archive/
+    url: /year-archive/
   - title: "Collections"
-      url: /collection-archive/
+    url: /collection-archive/
   - title: "Tag"
-      url: /tags/
+    url: /tags/
   - title: "Category"
-      url: /categories/
+    url: /categories/
   - title: "Sitemap"
-      url: /sitemap/
+    url: /sitemap/
