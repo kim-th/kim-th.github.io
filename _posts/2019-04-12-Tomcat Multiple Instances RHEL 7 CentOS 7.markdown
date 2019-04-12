@@ -44,10 +44,10 @@ tomcat 그룹과 유저가 맞는지 확인 후 권한 부여
 ------------
 
 
-##서비스 로그 확인
+## 서비스 로그 확인
 `journalctl -u tomcat@INSTANCE1`
 
-##포트 권한 에러
+## 포트 권한 에러
 java.net.BindException: Permission denied (Bind failed) 
 참고: https://support.plesk.com/hc/en-us/articles/115002067794-Java-application-is-not-working-BindException-Permission-denied-Bind-failed-
 
@@ -58,17 +58,17 @@ java.net.BindException: Permission denied (Bind failed)
 ------------
 
 # 실제 구성 내용
-##INSTANCE1
-###서비스
+## INSTANCE1
+### 서비스
 `cp /usr/lib/systemd/system/tomcat@.service /usr/lib/systemd/system/tomcat@INSTANCE1.service`
 
-###개별 환경변수
+### 개별 환경변수
 `cp /etc/sysconfig/tomcat /etc/sysconfig/tomcat@INSTANCE1`
 
-###CATALINA_BASE 만들기
+### CATALINA_BASE 만들기
 `mkdir /var/lib/tomcats/INSTANCE1`
 `cp -r /etc/tomcat  /var/lib/tomcats/INSTANCE1/conf`
-###포트 정보 변경
+### 포트 정보 변경
 `vi /var/lib/tomcats/INSTANCE1/conf/server.xml --1****`
 ```xml
 ...
@@ -82,7 +82,7 @@ redirectPort="18443" ></Connector>
 ...
 ```
 
-###temp 기본 경로로 변경(주석 처리 시 기본 경로)
+### temp 기본 경로로 변경(주석 처리 시 기본 경로)
 `vi /var/lib/tomcats/INSTANCE1/conf/tomcat.conf`
 ```bash
 # System-wide tmp
@@ -90,10 +90,10 @@ redirectPort="18443" ></Connector>
 
 ```
 
-###로그
+### 로그
 `cp /var/log/tomcat /var/lib/tomcats/INSTANCE1/logs` 
 `cp /etc/logrotate.d/tomcat /etc/logrotate.d/tomcat@INSTANCE1`
-###logrotate.d/tomcat@INSTANCE1 수정
+### logrotate.d/tomcat@INSTANCE1 수정
 `vi /etc/logrotate.d/tomcat@INSTANCE1`
 ```
 /var/lib/tomcats/INSTANCE1/logs/catalina.out {
@@ -110,33 +110,33 @@ create 0644 tomcat tomcat
 `cp /var/cache/tomcat/work /var/lib/tomcats/INSTANCE1/work`
 `cp /var/cache/tomcat/temp /var/lib/tomcats/INSTANCE1/temp`
 
-###권한
+### 권한
 `chown tomcat.tomcat /var/lib/tomcats/ -R`
 
-###포트 권한
+### 포트 권한
 `semanage port -a -t http_port_t -p tcp 18080 2>/dev/null || semanage port -m -t http_port_t -p tcp 18080`
 `semanage port -a -t http_port_t -p tcp 18009 2>/dev/null || semanage port -m -t http_port_t -p tcp 18009`
 `semanage port -a -t http_port_t -p tcp 18005 2>/dev/null || semanage port -m -t http_port_t -p tcp 18005`
 
-###서비스 실행
+### 서비스 실행
 `systemctl status tomcat@INSTANCE1`
 `systemctl enable tomcat@INSTANCE1 # enable start-on-boot`
 `systemctl start tomcat@INSTANCE1 # start instance right now`
 `systemctl stop tomcat@INSTANCE1 # stop instance right now`
 
-###서비스 로그 확인
+### 서비스 로그 확인
 `journalctl -u tomcat@INSTANCE1`
 
 ------------
 
-##INSTANCE2
-###서비스
+## INSTANCE2
+### 서비스
 `cp /usr/lib/systemd/system/tomcat@.service /usr/lib/systemd/system/tomcat@INSTANCE2.service`
-##개별 환경변수
+## 개별 환경변수
 `cp /etc/sysconfig/tomcat /etc/sysconfig/tomcat@INSTANCE2`
-###CATALINA_BASE 만들기
+### CATALINA_BASE 만들기
 `cp -r /var/lib/tomcats/INSTANCE1 /var/lib/tomcats/INSTANCE2`
-###포트 정보 변경
+### 포트 정보 변경
 `vi /var/lib/tomcats/INSTANCE2/conf/server.xml --2****`
 ```xml
 ...
@@ -151,9 +151,9 @@ redirectPort="28443" />
 ```
 
 		
-###로그
+### 로그
 `cp /etc/logrotate.d/tomcat@INSTANCE1 /etc/logrotate.d/tomcat@INSTANCE2`
-###logrotate.d/tomcat@INSTANCE2 수정
+### logrotate.d/tomcat@INSTANCE2 수정
 'vi /etc/logrotate.d/tomcat@INSTANCE2'
 ```
 /var/lib/tomcats/INSTANCE2/logs/catalina.out {
@@ -166,21 +166,21 @@ create 0644 tomcat tomcat
 }
 ```
 
-###권한
+### 권한
 `chown tomcat.tomcat /var/lib/tomcats/ -R`
 
-###포트 권한
+### 포트 권한
 `semanage port -a -t http_port_t -p tcp 28080 2>/dev/null || semanage port -m -t http_port_t -p tcp 28080`
 `semanage port -a -t http_port_t -p tcp 28009 2>/dev/null || semanage port -m -t http_port_t -p tcp 28009`
 `semanage port -a -t http_port_t -p tcp 28005 2>/dev/null || semanage port -m -t http_port_t -p tcp 28005`
 
-##서비스 실행
+## 서비스 실행
 `systemctl status tomcat@INSTANCE2`
 `systemctl enable tomcat@INSTANCE2 # enable start-on-boot`
 `systemctl start tomcat@INSTANCE2 # start instance right now`
 `systemctl stop tomcat@INSTANCE2 # stop instance right now`
 
-##서비스 로그 확인
+## 서비스 로그 확인
 `journalctl -u tomcat@INSTANCE2`
 
 
