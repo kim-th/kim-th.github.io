@@ -5,45 +5,45 @@ categories: '  tomcat'
 ---
 참고: https://notesbytom.wordpress.com/2017/03/10/tomcat-multiple-instances-rhel-7-centos-7/
 
-아래의 INSTANCE는 구성시 인스턴스의 실제 명칭
+아래의 `INSTANCE`는 구성시 인스턴스의 실제 명칭
 
 1.  모든 톰캣의 글로벌 환경설정  
 `/etc/tomcat/tomcat.conf`  
 
 2. Tomcat services 만들기 (systemctl)  
-`/usr/lib/systemd/system/tomcat@.service (기존 템플릿 파일)`  
-`/usr/lib/systemd/system/tomcat@INSTANCE.service(생성할 파일)`  
-`cp [기존 템플릿] [생성할 파일]`  
+/usr/lib/systemd/system/tomcat@.service (기존 템플릿 파일)  
+/usr/lib/systemd/system/tomcat@`INSTANCE`.service(생성할 파일)  
+cp [기존 템플릿] [생성할 파일]  
 
 3. 인스턴스 별 환경변수 만들기  
-`/etc/sysconfig/tomcat(기존 톰캣 파일)`  
-`/etc/sysconfig/tomcat@ INSTANCE (생성할 파일)`  
+/etc/sysconfig/tomcat(기존 톰캣 파일)  
+/etc/sysconfig/tomcat@`INSTANCE` (생성할 파일) 
 
 4. 인스턴스 별 CATALINA_BASE 디렉토리 만들기  
-`/var/lib/tomcats/ INSTANCE`  
-`/usr/share/tomcat(기존 톰캣) 폴더에서 링크를 확인 가능`  
-`cp /etc/tomcat  /var/lib/tomcats/ INSTANCE /conf port 수정 필요`  
-`cp /var/log/tomcat /var/lib/tomcats/ INSTANCE /logs`  
-`cp /etc/logrotate.d/tomcat@ INSTANCE`  
-`cp /var/lib/tomcat/webapps /var/lib/tomcats/ INSTANCE /webapps`  
-`cp /var/cache/tomcat/work /var/lib/tomcats/ INSTANCE /work`  
-`cp /var/cache/tomcat/temp /var/lib/tomcats/ INSTANCE /temp`  
+/var/lib/tomcats/`INSTANCE`  
+/usr/share/tomcat(기존 톰캣) 폴더에서 링크를 확인 가능  
+cp /etc/tomcat /var/lib/tomcats/`INSTANCE`/conf port 수정 필요  
+cp /var/log/tomcat /var/lib/tomcats/`INSTANCE`/logs  
+cp /etc/logrotate.d/tomcat /etc/logrotate.d/tomcat@`INSTANCE`  
+cp /var/lib/tomcat/webapps /var/lib/tomcats/`INSTANCE`/webapps  
+cp /var/cache/tomcat/work /var/lib/tomcats/`INSTANCE`/work  
+cp /var/cache/tomcat/temp /var/lib/tomcats/`INSTANCE`/temp  
 
 5. 파일 권한 확인 필요
 tomcat 그룹과 유저가 맞는지 확인 후 권한 부여  
-`chown tomcat.tomcat /var/lib/tomcats/ -R`  
+chown tomcat.tomcat /var/lib/tomcats/ -R  
 
 6. 서비스 실행  
-`systemctl status tomcat@ INSTANCE`  
-`systemctl enable tomcat@ INSTANCE # enable start-on-boot`  
-`systemctl start tomcat@ INSTANCE # start instance right now`  
-`systemctl stop tomcat@ INSTANCE # stop instance right now`  
+systemctl status tomcat@`INSTANCE`  
+systemctl enable tomcat@`INSTANCE` # enable start-on-boot  
+systemctl start tomcat@`INSTANCE` # start instance right now  
+systemctl stop tomcat@`INSTANCE` # stop instance right now  
 
 ------------
 
 
 ## 서비스 로그 확인
-`journalctl -u tomcat@INSTANCE1`
+journalctl -u tomcat@`INSTANCE`
 
 ## 포트 권한 에러
 java.net.BindException: Permission denied (Bind failed)  
