@@ -3,8 +3,6 @@ layout: post
 title: '  톰캣 멀티인스턴스 구성 (Cent-OS)'  
 categories: '  tomcat'  
 ---
-# 톰캣 멀티인스턴스 구성 (Cent-OS)
-
 참고: https://notesbytom.wordpress.com/2017/03/10/tomcat-multiple-instances-rhel-7-centos-7/
 
 아래의 INSTANCE는 구성시 인스턴스의 실제 명칭
