@@ -6,4 +6,4 @@ vendor
 .sass-cache
 _site
 Gemfile.lock
-package-lick.json
+package-lock.json
