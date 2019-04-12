@@ -261,15 +261,17 @@ category_archive:
 tag_archive:
   type: jekyll-archives
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
 jekyll-archives:
-  enabled: all
+  enabled:
+    - categories
+    - tags
   layouts:
     category: archive-taxonomy
     tag: archive-taxonomy
   permalinks:
-    category: "/categories/:name/"
-    tag: "/tags/:name/"
+    category: /categories/:name/
+    tag: /tags/:name/
+
 
 
 # HTML Compression
@@ -277,8 +279,7 @@ jekyll-archives:
 compress_html:
   clippings: all
   ignore:
-    envs: development
-
+    envs: development  # disable compression in dev environment
 
 # Defaults
 defaults:
