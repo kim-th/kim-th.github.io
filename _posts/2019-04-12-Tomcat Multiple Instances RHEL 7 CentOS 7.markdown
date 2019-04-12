@@ -46,7 +46,7 @@ tomcat 그룹과 유저가 맞는지 확인 후 권한 부여
 `journalctl -u tomcat@INSTANCE1`
 
 ## 포트 권한 에러
-java.net.BindException: Permission denied (Bind failed) 
+java.net.BindException: Permission denied (Bind failed)  
 참고: https://support.plesk.com/hc/en-us/articles/115002067794-Java-application-is-not-working-BindException-Permission-denied-Bind-failed-
 
 
