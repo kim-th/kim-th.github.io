@@ -270,8 +270,8 @@ jekyll-archives:
     category: archive-taxonomy
     tag: archive-taxonomy
   permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
+    category: "/categories/:name/"
+    tag: "/tags/:name/"
 
 
 # HTML Compression
@@ -295,5 +295,3 @@ defaults:
       comments: true # 댓글 활성화
       share: true # 포스트 공유 기능을 활성화 할 것인지 정한다. 기본값은 true이다.
       related: true
-
-theme: jekyll-theme-cayman
