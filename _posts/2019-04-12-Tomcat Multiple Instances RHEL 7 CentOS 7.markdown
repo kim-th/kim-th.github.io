@@ -52,7 +52,7 @@ java.net.BindException: Permission denied (Bind failed)
 참고: https://support.plesk.com/hc/en-us/articles/115002067794-Java-application-is-not-working-BindException-Permission-denied-Bind-failed-
 
 
-##리눅스 포트 프로세스 목록 확인
+## 리눅스 포트 프로세스 목록 확인  
 `netstat -tnlp`  
 
 ------------
