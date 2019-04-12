@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Welcome to Jekyll!'
-categories: 'jekyll update'
+title: 'Jekyll를 이용한 GitHub Pages 만들기'
+categories: 'jekyll'
 ---
 
 # Jekyll를 이용한 GitHub Pages 만들기
