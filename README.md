@@ -3,4 +3,4 @@
 
   기록하기 위한 개인용 블로그입니다.
 
-htttps://kim-th.github.io
+https://kim-th.github.io
