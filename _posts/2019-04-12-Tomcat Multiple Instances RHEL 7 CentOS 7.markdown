@@ -175,7 +175,7 @@ create 0644 tomcat tomcat
 `semanage port -a -t http_port_t -p tcp 28005 2>/dev/null || semanage port -m -t http_port_t -p tcp 28005`  
 
 ## 서비스 실행
-`systemctl status tomcat@INSTANCE2`
+`systemctl status tomcat@INSTANCE2`  
 `systemctl enable tomcat@INSTANCE2 # enable start-on-boot`  
 `systemctl start tomcat@INSTANCE2 # start instance right now`  
 `systemctl stop tomcat@INSTANCE2 # stop instance right now`  
