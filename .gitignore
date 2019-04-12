@@ -1,1 +1,7 @@
-Jeklly gitignore list
+Jeklly
+gitignore
+list
+vendor
+.bundle
+.sass-cache
+_site
