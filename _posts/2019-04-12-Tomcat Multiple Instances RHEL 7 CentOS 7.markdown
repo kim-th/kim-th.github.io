@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog
 title: '  톰캣 멀티인스턴스 구성 (Cent-OS)'  
 categories: '  tomcat'  
 ---
@@ -17,7 +17,7 @@ cp [기존 템플릿] [생성할 파일]
 
 3. 인스턴스 별 환경변수 만들기  
 /etc/sysconfig/tomcat(기존 톰캣 파일)  
-/etc/sysconfig/tomcat@`INSTANCE` (생성할 파일) 
+/etc/sysconfig/tomcat@`INSTANCE` (생성할 파일)
 
 4. 인스턴스 별 CATALINA_BASE 디렉토리 만들기  
 /var/lib/tomcats/`INSTANCE`  
@@ -148,7 +148,7 @@ redirectPort="28443" />
 ...
 ```
 
-		
+
 ### 로그
 `cp /etc/logrotate.d/tomcat@INSTANCE1 /etc/logrotate.d/tomcat@INSTANCE2`  
 ### logrotate.d/tomcat@INSTANCE2 수정
@@ -180,5 +180,3 @@ create 0644 tomcat tomcat
 
 ## 서비스 로그 확인
 `journalctl -u tomcat@INSTANCE2`  
-
-
