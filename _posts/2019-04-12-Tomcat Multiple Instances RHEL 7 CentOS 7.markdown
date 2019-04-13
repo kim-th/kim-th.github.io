@@ -1,7 +1,7 @@
 ---
 layout: blog
-title: '  톰캣 멀티인스턴스 구성 (Cent-OS)'  
-categories: '  tomcat'  
+title: "톰캣 멀티인스턴스 구성 (Cent-OS)"  
+categories: tomcat
 ---
 참고: https://notesbytom.wordpress.com/2017/03/10/tomcat-multiple-instances-rhel-7-centos-7/
 
